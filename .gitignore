@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Production output and caches
+dist/
+.vite/
+coverage/
+
+# Browser test output
+playwright-report/
+test-results/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local tooling and editor state
+.agents/
+.codex/
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# TypeScript incremental state
+*.tsbuildinfo
