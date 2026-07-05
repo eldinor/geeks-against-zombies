@@ -31,7 +31,6 @@ export class GameApp {
     this.graph = createGameGraph(
       this.scene.scene,
       this.runtime,
-      this.scene.tiles,
       () => this.publish(),
       (metadata) => this.handleBoardPick(metadata),
       (metadata) => this.handleBoardHover(metadata),

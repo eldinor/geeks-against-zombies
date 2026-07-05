@@ -186,9 +186,7 @@ import "@babylonjs/core/Culling/ray.js";
 
 Do not remove it. Tree-shaken Babylon builds require this side-effect registration for `scene.pick()`.
 
-`QueueCommandBlock` uses public scene pointer observers as Flow Graph pending tasks because Babylon's experimental mesh-pick event can miss gestures consumed by camera controls.
-
-Always remove observers during block cancellation/disposal.
+Use Babylon 9's dedicated `FlowGraphPointerDownEventBlock` and `FlowGraphPointerMoveEventBlock` through the local adapters. The Flow Graph coordinator owns observer registration and cleanup; do not add duplicate scene pointer observers.
 
 ### Health bars
 

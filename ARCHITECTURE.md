@@ -159,13 +159,12 @@ Gameplay rules remain in `simulation.ts`; the block only advances the runtime an
 
 ### Pointer command block
 
-`QueueCommandBlock` extends `FlowGraphMeshPickEventBlock` and owns Babylon pointer observers as pending Flow Graph tasks.
-
-The installed Babylon Flow Graph mesh-pick event listens to the stricter `POINTERPICK` gesture. Camera controls can consume that gesture, so the adapter also handles `POINTERDOWN` and `POINTERMOVE` through the public scene observable:
+Babylon 9 provides dedicated Flow Graph pointer events. `QueueCommandBlock` extends `FlowGraphPointerDownEventBlock`, while `PublishHoverBlock` extends `FlowGraphPointerMoveEventBlock`:
 
 - Pointer down resolves mesh metadata and sends an interaction target to `GameApp`.
 - Pointer move resolves mesh metadata and updates the hover preview.
-- Pending observers are removed when the graph is cancelled or disposed.
+
+The coordinator owns event registration and cleanup; the application does not install parallel scene observers.
 
 Babylon's tree-shaken Ray module is explicitly imported because `scene.pick()` requires its registration side effect.
 
@@ -256,7 +255,7 @@ The project exposes separate lint, strict typecheck, test, and production build 
 
 ## Current limitations and risks
 
-- Babylon Flow Graph is experimental, and pointer behavior required a public-scene observer inside the Flow Graph adapter.
+- Babylon Flow Graph is experimental; its APIs should be checked when upgrading Babylon.
 - Replay import/export has headless support but no user-facing file UI yet.
 - Presentation uses generated primitives; character assets and animation systems are not implemented.
 - Entity movement is applied immediately in presentation rather than visually interpolated.
